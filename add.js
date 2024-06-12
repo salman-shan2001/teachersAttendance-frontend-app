@@ -10,6 +10,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+//add part
+
 app.post("/",
     (req, res) => {
         const input = req.body
@@ -20,11 +22,24 @@ app.post("/",
     }
 )
 
+// view part
 app.post("/view", (req, res) => {
     teachermodel.find().then(
         (data) => { res.json(data) }
     ).catch()
 })
+
+// search part
+app.post("/search", (req, res) => {
+    const input=req.body
+    teachermodel.find(input).then(
+        (data)=>{res.json(data)}
+    ).catch(
+        (error)=>{res.json(error)}
+    )
+})
+
+
 
 app.listen(1003, () => {
     console.log("server running")
