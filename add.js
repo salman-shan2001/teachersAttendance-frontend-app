@@ -39,7 +39,17 @@ app.post("/search", (req, res) => {
     )
 })
 
+// delete part
 
+
+app.post("/delete",(req,res)=>{
+    let input=req.body
+    teachermodel.findByIdAndDelete(input._id).then(
+        (response)=>{res.json({"status":"success"})}
+    ).catch(
+        (response)=>{res.json({"status":"error"})}
+    )
+})
 
 app.listen(1003, () => {
     console.log("server running")
