@@ -13,15 +13,19 @@ app.use(express.json())
 app.post("/",
     (req, res) => {
         const input = req.body
-       let teacher= new teachermodel(input)
-       console.log(teacher)
-       teacher.save()
-        res.json({"status":"success"})
+        let teacher = new teachermodel(input)
+        console.log(teacher)
+        teacher.save()
+        res.json({ "status": "success" })
     }
 )
 
+app.post("/view", (req, res) => {
+    teachermodel.find().then(
+        (data) => { res.json(data) }
+    ).catch()
+})
 
-
-app.listen(1003,()=>{
+app.listen(1003, () => {
     console.log("server running")
 })
